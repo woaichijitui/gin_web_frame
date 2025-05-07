@@ -1,7 +1,7 @@
 package test
 
 import (
-	"gin_web_gin/core"
+	"gin_web_frame/core"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"os"

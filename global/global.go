@@ -2,7 +2,7 @@ package global
 
 import (
 	"fmt"
-	"gin_web_gin/config"
+	"gin_web_frame/config"
 	"github.com/qiniu/qmgo"
 	"github.com/redis/go-redis/v9"
 	"github.com/spf13/viper"
@@ -24,7 +24,7 @@ var (
 	//Timer               timer.Timer = timer.NewTimerTask()
 	//Concurrency_Control             = &singleflight.Group{}
 	//ROUTERS             gin.RoutesInfo
-	//ACTIVE_DBNAME       *string
+	ACTIVE_DBNAME *string
 	//BlackCache          local_cache.Cache
 	lock sync.RWMutex
 )

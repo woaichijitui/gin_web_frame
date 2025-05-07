@@ -1,8 +1,8 @@
 package core
 
 import (
-	"gin_web_gin/core/internal"
-	"gin_web_gin/global"
+	"gin_web_frame/core/internal"
+	"gin_web_frame/global"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"

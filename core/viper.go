@@ -3,7 +3,7 @@ package core
 import (
 	"flag"
 	"fmt"
-	"gin_web_gin/global"
+	"gin_web_frame/global"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"os"

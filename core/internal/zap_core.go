@@ -2,7 +2,7 @@ package internal
 
 import (
 	"fmt"
-	"gin_web_gin/global"
+	"gin_web_frame/global"
 	"go.uber.org/zap"
 	"go.uber.org/zap/buffer"
 	"go.uber.org/zap/zapcore"

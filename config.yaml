@@ -153,7 +153,7 @@ mysql:
     prefix: ""
     port: "33069"
     config: charset=utf8mb4&parseTime=True&loc=Local
-    db-name: gva
+    db-name: zztag
     username: root
     password: "123456"
     path: 47.121.183.173
@@ -161,8 +161,8 @@ mysql:
     log-mode: error
     max-idle-conns: 10
     max-open-conns: 100
-    singular: false
-    log-zap: false
+    singular: true
+    log-zap: true
 oracle:
     prefix: ""
     port: ""
