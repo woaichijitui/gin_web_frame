@@ -1,0 +1,48 @@
+package config
+
+type JWT struct {
+	Expires    int    `yaml:"expires"`     // 过期时间 单位小时
+	Issuer     string `yaml:"issuer"`      // 颁发人
+	GrantScope string `yaml:"grant_scope"` // 授权范围
+	Subject    string `yaml:"subject"`     // 主题
+}
+
+const (
+	PRI_KEY = `-----BEGIN PRIVATE KEY-----
+MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC0cAnvlPi+Q0AO
+/3byxg9eECnK/mj0g+8JBUfMHZiF+Aq3qNyLyzRYhnajpS45O4jqlvHFlRoX5buN
+km8+zY0nN1ZgWpw+arxlL2QNk5CdkqeeNRONMKUy5lSoknaogkdeotYNIsptBtUp
+hQs6SFS2d1ZrdWeE5Ts7RLQWxUhgliKwZLfaEFGoHePbrJYX/V2FucvF/Y7fbKjB
+BL2+7C2RH3ToJPaaMQfSoTkQzfCef3YV5mBU0iEl4szA5hiPfV1/a4Rctp8Bkhcb
+b/IhEgFikUhMrxFZF+p0aTdTwAhFDaXZIZDXedrwCw+C3ohUu0qnuQHvnGZRfgDp
+0gElAd5RAgMBAAECggEAPcQEgrC6HVcj/H5Sl3RZGlfqFoTUJK9tCed21lZjOajY
+8lmpdWkP+CW/QvFuS0Un7zXQeVQ65GdNtn6j+hme8getV7pstakP6Is6crNK08W5
+/xwoHzLBuhTCchoA6FoAWFLhdwmrxXqLSXUzjLXp2bQsLwi3cPSPPBCenRTXW8g1
+yngdrJTUaFZNSrNu/Lyjhn4lvzlZul81DxMkY2EfhoSA0YuOiCR4n3TUvEoHn66y
+CO2LRcHxotlVvoNbw84DcuClmuKt1gpT9nrgsKLTSafYRfHF+CcQeh6l8p1+KPya
+1GKpg2ttXW+EscLV6rUh/LnJYC0qFKlVA3oL/ciAgQKBgQDeI+LnLHuceSK/Zo+j
+LwQ9QSocoO7ptF28n3i2sbWydjItfPqtXOntkuue9o/ZjHcQ/JNO86USthO3Ay67
+KCDKW+FXOuwlTV199Sy15zk8ioaOWZaoLQygoA58kdpI/I8Slb8PEgCrJSxrmquA
+tH083i57k4mhKtwCuHsoIBUq6QKBgQDP8OGrA1G8OOxtFw2jdoXHM5XGaHZc0vPo
+M819FWljNtDN17RoMKsURSuRvJfURbME6AheGA/IM+82VVYdcRv+36ofTpC/wsOs
+JsFQ9E/nO2AVVVKno1ksphpqOadLxeU1yzURh4W66JjqgVf7rBNGzKudxqXzEl+D
+w3uBuaCnKQKBgQCAUViD0zVASNUinPsB92nKfHb3/Jqlk1PGXpQbbIIZqZ8ImbYw
+KIjUfFbxB1pG/5XT0SLCq4lCSr0OrZ7z65Utb2+2tMmuLod/9/0wwnVUnGxnlCar
+1QIDUxGrMZFXMdTvlmK8MNkEA8AqFDlXamshmvJc3ffVim12gNxbbFTt6QKBgQCE
+NE8VzkdyFvLiLM0EB3/odXidK59NRuXB1OWpyCo35Qr+RE00DPVILu4Te0dAs4us
+6+UeBchK7hIBhmH42AgHlKZxvx6yfJ6xXfZ8hMgkaJCfH58sa+NvSq/yp3Mg7tHa
+0LaNzY8NlYJbXh7VKMMcuVXHOxwZHa5SdL+aa62jeQKBgQCqlfG2+Iofn/P53Aiy
+y+weau94VvO/s0YmAvrD2fGaXIff5KIG9dnIWGadpPgZz9iFr4w1b5jDCVOrSkd0
+n6e9xtjukrRZvnCH9IVEDk6NF7vmAXLuQb1fDlzww+qu4y2fT8jkPaa+05KDmEar
+ERiXupfjUS35nvBAGYLmG3LVGA==
+-----END PRIVATE KEY-----`
+	PUB_KEY = `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtHAJ75T4vkNADv928sYP
+XhApyv5o9IPvCQVHzB2YhfgKt6jci8s0WIZ2o6UuOTuI6pbxxZUaF+W7jZJvPs2N
+JzdWYFqcPmq8ZS9kDZOQnZKnnjUTjTClMuZUqJJ2qIJHXqLWDSLKbQbVKYULOkhU
+tndWa3VnhOU7O0S0FsVIYJYisGS32hBRqB3j26yWF/1dhbnLxf2O32yowQS9vuwt
+kR906CT2mjEH0qE5EM3wnn92FeZgVNIhJeLMwOYYj31df2uEXLafAZIXG2/yIRIB
+YpFITK8RWRfqdGk3U8AIRQ2l2SGQ13na8AsPgt6IVLtKp7kB75xmUX4A6dIBJQHe
+UQIDAQAB
+-----END PUBLIC KEY-----`
+)
