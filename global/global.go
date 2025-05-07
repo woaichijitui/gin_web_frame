@@ -3,6 +3,7 @@ package global
 import (
 	"fmt"
 	"gin_web_frame/config"
+	"github.com/gin-gonic/gin"
 	"github.com/qiniu/qmgo"
 	"github.com/redis/go-redis/v9"
 	"github.com/spf13/viper"
@@ -23,7 +24,7 @@ var (
 	LOG *zap.Logger
 	//Timer               timer.Timer = timer.NewTimerTask()
 	//Concurrency_Control             = &singleflight.Group{}
-	//ROUTERS             gin.RoutesInfo
+	ROUTERS       gin.RoutesInfo
 	ACTIVE_DBNAME *string
 	//BlackCache          local_cache.Cache
 	lock sync.RWMutex

@@ -3,7 +3,6 @@ package main
 import (
 	"gin_web_frame/core"
 	"gin_web_frame/global"
-	"time"
 )
 
 func main() {
@@ -11,10 +10,6 @@ func main() {
 	global.LOG = core.ZapInit() // 初始化zap日志库
 	global.DB = core.Gorm()     // gorm连接数据库
 
-	global.LOG.Debug("test1")
-	global.LOG.Info("test1")
-	global.LOG.Warn("test1")
-	global.LOG.Error("test1")
+	core.RunWindowsServer()
 
-	time.Sleep(time.Hour)
 }

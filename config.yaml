@@ -1,5 +1,6 @@
 system:
     server-name: gin_web_frame
+    mod: debug
     db-type: mysql
     oss-type: local
     router-prefix: ""
@@ -7,7 +8,7 @@ system:
     iplimit-count: 15000
     iplimit-time: 3600
     use-multipoint: false
-    use-redis: false
+    use-redis: true
     use-mongo: false
     use-strict-auth: false
 zap:
@@ -200,9 +201,9 @@ qiniu:
     use-https: false
     use-cdn-domains: false
 redis:
-    name: ""
-    addr: 127.0.0.1:6379
-    password: ""
+    name: "cache"
+    addr: 47.121.183.173:36379
+    password: "123456"
     db: 0
     useCluster: false
     clusterAddrs:
@@ -211,8 +212,8 @@ redis:
         - 172.21.0.2:7002
 redis-list:
     - name: cache
-      addr: 127.0.0.1:6379
-      password: ""
+      addr: 47.121.183.173:36379
+      password: "123456"
       db: 0
       useCluster: false
       clusterAddrs:
