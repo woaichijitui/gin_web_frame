@@ -2,7 +2,8 @@ package initialize
 
 import (
 	"gin_web_frame/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/middleware"
+	"gin_web_frame/middleware"
+	"gin_web_frame/routers"
 	"github.com/swaggo/swag/example/basic/docs"
 	"net/http"
 	"os"
@@ -57,14 +58,13 @@ func Routers() *gin.Engine {
 	global.LOG.Info("register swagger handler")
 
 	// 方便统一添加路由组前缀 多服务器上线使用
-	PublicGroup := Router.Group(global.CONFIG.System.RouterPrefix)
-	PrivateGroup := Router.Group(global.CONFIG.System.RouterPrefix)
+	ApiGroup := Router.Group(global.CONFIG.System.RouterPrefix)
 
-	PrivateGroup.Use(middleware.JWTAuth())
+	ApiGroup.Use(middleware.JwtAuth())
 
 	{
 		// 健康监测
-		PublicGroup.GET("/health", func(c *gin.Context) {
+		ApiGroup.GET("/health", func(c *gin.Context) {
 			c.JSON(http.StatusOK, "ok")
 		})
 	}
@@ -94,6 +94,9 @@ func Routers() *gin.Engine {
 		exampleRouter.InitAttachmentCategoryRouterRouter(PrivateGroup) // 文件上传下载分类
 
 	}*/
+
+	// 注册用户路由
+	routers.UserRouter(ApiGroup)
 
 	global.ROUTERS = Router.Routes()
 

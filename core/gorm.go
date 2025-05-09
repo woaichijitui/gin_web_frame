@@ -2,8 +2,7 @@ package core
 
 import (
 	"gin_web_frame/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/example"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
+	models "gin_web_frame/model"
 	"os"
 
 	"go.uber.org/zap"
@@ -36,41 +35,10 @@ func Gorm() *gorm.DB {
 func RegisterTables() {
 	db := global.DB
 	err := db.AutoMigrate(
-
-		system.SysApi{},
-		system.SysIgnoreApi{},
-		system.SysUser{},
-		system.SysBaseMenu{},
-		system.JwtBlacklist{},
-		system.SysAuthority{},
-		system.SysDictionary{},
-		system.SysOperationRecord{},
-		system.SysAutoCodeHistory{},
-		system.SysDictionaryDetail{},
-		system.SysBaseMenuParameter{},
-		system.SysBaseMenuBtn{},
-		system.SysAuthorityBtn{},
-		system.SysAutoCodePackage{},
-		system.SysExportTemplate{},
-		system.Condition{},
-		system.JoinTemplate{},
-		system.SysParams{},
-
-		example.ExaFile{},
-		example.ExaCustomer{},
-		example.ExaFileChunk{},
-		example.ExaFileUploadAndDownload{},
-		example.ExaAttachmentCategory{},
+		models.UserModel{},
 	)
 	if err != nil {
 		global.LOG.Error("register table failed", zap.Error(err))
-		os.Exit(0)
-	}
-
-	//err = bizModel()
-
-	if err != nil {
-		global.LOG.Error("register biz_table failed", zap.Error(err))
 		os.Exit(0)
 	}
 	global.LOG.Info("register table success")

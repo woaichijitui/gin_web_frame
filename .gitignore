@@ -4,9 +4,9 @@ uploads
 .air.toml
 tmp
 docs
-setting.yaml
-setting1.yaml
-config.yaml
-config1.yaml
+#setting.yaml
+#setting1.yaml
+#config.yaml
+#config1.yaml
 
 
