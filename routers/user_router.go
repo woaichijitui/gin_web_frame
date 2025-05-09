@@ -9,7 +9,7 @@ func UserRouter(router *gin.RouterGroup) {
 
 	loginApi := api.ApiGroupApp.LoginApi
 
-	router.POST("/email_login", loginApi.EmailLoginView)
+	router.POST("/login", loginApi.EmailLoginView)
 	/*router.GET("/users", middleware.JwtAuth(), loginApi.UserListView)
 	router.PUT("/user_update_role", middleware.JwtAuth(), loginApi.UserUpdateRoleView)
 	router.PUT("/user_update_pwd", middleware.JwtAuth(), loginApi.UserUpdatePwdView)

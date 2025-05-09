@@ -16,12 +16,12 @@ type LoginRequest struct {
 	Password string `json:"password" binding:"required" msg:"密码不正确"`
 }
 
-// EmailLoginView 邮箱或者用户名登录
+// EmailLoginView 用户管理
 // @Tags 用户管理
-// @summary 邮箱登录
-// @Description 邮箱登录
+// @summary 用户管理
+// @Description 用户管理
 // @Param cr body LoginRequest true "用户 密码 "
-// @Router /email_login [post]
+// @Router /login [post]
 // @Produce json
 // @success 200 {object} res.Response
 func (l UserApi) EmailLoginView(c *gin.Context) {
