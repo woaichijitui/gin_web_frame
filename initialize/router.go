@@ -2,6 +2,7 @@ package initialize
 
 import (
 	"gin_web_frame/global"
+	"gin_web_frame/middleware"
 	"gin_web_frame/routers"
 	"github.com/swaggo/swag/example/basic/docs"
 	"net/http"
@@ -38,6 +39,8 @@ func Routers() *gin.Engine {
 	if global.CONFIG.System.Mode == gin.DebugMode {
 		Router.Use(gin.Logger())
 	}
+
+	Router.Use(middleware.GinZapMiddleware(global.LOG))
 
 	// 如果想要不使用nginx代理前端网页，可以修改 web/.env.production 下的
 	// VUE_APP_BASE_API = /

@@ -16,7 +16,7 @@ type LoginRequest struct {
 	Password string `json:"password" binding:"required" msg:"密码不正确"`
 }
 
-// EmailLoginView 用户管理
+// EmailLoginView 用户登录
 // @Tags 用户管理
 // @summary 用户管理
 // @Description 用户管理
