@@ -12,7 +12,7 @@ import (
 )
 
 type LoginRequest struct {
-	UserName string `json:"username" binding:"required" msg:"用户名不存在"`
+	Username string `json:"username" binding:"required" msg:"用户名不存在"`
 	Password string `json:"password" binding:"required" msg:"密码不正确"`
 }
 
@@ -34,9 +34,9 @@ func (l UserApi) EmailLoginView(c *gin.Context) {
 	}
 	//	判断是否有该用户
 	var userModel models.UserModel
-	row := global.DB.Find(&userModel, "username = ? or email = ?", cr.UserName, cr.UserName).RowsAffected
+	row := global.DB.Find(&userModel, "username = ? or email = ?", cr.Username, cr.Username).RowsAffected
 	if row == 0 {
-		res.FailWithMassage("用户名错误", c)
+		res.FailWithMassage("用户名或密码错误", c)
 		return
 	}
 

@@ -3,7 +3,7 @@ system:
     mod: debug
     db-type: mysql
     oss-type: local
-    router-prefix: ""
+    router-prefix: "api"
     addr: 8888
     iplimit-count: 15000
     iplimit-time: 3600

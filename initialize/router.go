@@ -2,7 +2,6 @@ package initialize
 
 import (
 	"gin_web_frame/global"
-	"gin_web_frame/middleware"
 	"gin_web_frame/routers"
 	"github.com/swaggo/swag/example/basic/docs"
 	"net/http"
@@ -60,7 +59,7 @@ func Routers() *gin.Engine {
 	// 方便统一添加路由组前缀 多服务器上线使用
 	ApiGroup := Router.Group(global.CONFIG.System.RouterPrefix)
 
-	ApiGroup.Use(middleware.JwtAuth())
+	//ApiGroup.Use(middleware.JwtAuth())
 
 	{
 		// 健康监测

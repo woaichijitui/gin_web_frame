@@ -15,7 +15,7 @@ import (
 func JwtAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//判断是否是管理者
-		token := c.GetHeader("token")
+		token := c.GetHeader("Authorization")
 		//有无token
 		if token == "" {
 			res.FailWithMassage("未携带token", c)
@@ -49,7 +49,7 @@ func JwtAuth() gin.HandlerFunc {
 func JwtAdmin() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//判断是否是管理者
-		token := c.GetHeader("token")
+		token := c.GetHeader("Authorization")
 		//有无token
 		if token == "" {
 			res.FailWithMassage("未携带token", c)
