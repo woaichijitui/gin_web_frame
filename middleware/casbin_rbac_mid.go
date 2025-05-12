@@ -33,7 +33,7 @@ func casbin_rbac_mid() gin.HandlerFunc {
 		//	验证该角色有无权限
 		ok, err := casbin.CanAccess(roleStr, obj, act)
 		if err != nil {
-			zap.L().Error("casbin.CanAccess error: %v", zap.Error(err))
+			zap.L().Error("casbin  error: %v", zap.Error(err))
 			ctx.Abort()
 			return
 		}
