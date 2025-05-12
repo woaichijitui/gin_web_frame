@@ -3,6 +3,7 @@ package main
 import (
 	"gin_web_frame/core"
 	"gin_web_frame/global"
+	"go.uber.org/zap"
 )
 
 // @title 		    			zztag Swagger API接口文档
@@ -13,9 +14,10 @@ import (
 // @name 						x-token\
 // @BasePath                    /
 func main() {
-	global.VP = core.Viper()    // 初始化Viper
-	global.LOG = core.ZapInit() // 初始化zap日志库
-	global.DB = core.Gorm()     // gorm连接数据库
+	global.VP = core.Viper()       // 初始化Viper
+	global.LOG = core.ZapInit()    // 初始化zap日志库
+	zap.ReplaceGlobals(global.LOG) // 替换zap包中全局的logger实例，后续在其他包中只需使用zap.L()调用即可
+	global.DB = core.Gorm()        // gorm连接数据库
 	if global.DB != nil {
 		core.RegisterTables() // 初始化表
 		// 程序结束前关闭数据库链接
