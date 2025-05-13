@@ -36,6 +36,8 @@ func RegisterTables() {
 	db := global.DB
 	err := db.AutoMigrate(
 		models.UserModel{},
+		models.Article{},
+		models.Tag{},
 	)
 	if err != nil {
 		global.LOG.Error("register table failed", zap.Error(err))
