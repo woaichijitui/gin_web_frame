@@ -6,6 +6,7 @@ import (
 
 type Article struct {
 	gorm.Model
+	Category    string `gorm:"size:32"`   // 分类ID
 	Title       string `gorm:"size:256"`  // 标题
 	Content     string `gorm:"type:text"` // 内容
 	Cover       string // 封面

@@ -16,7 +16,7 @@ zap:
     prefix:
     format: json
     director: logs
-    encode-level: CapitalColorLevelEncoder #LowercaseLevelEncoder LowercaseColorLevelEncoder CapitalLevelEncoder CapitalColorLevelEncoder
+    encode-level: CapitalLevelEncoder #LowercaseLevelEncoder LowercaseColorLevelEncoder CapitalLevelEncoder CapitalColorLevelEncoder
     stacktrace-key: stacktrace1
     show-line: true
     log-in-console: true

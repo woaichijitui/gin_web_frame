@@ -43,7 +43,7 @@ func initMysqlDatabase(m config.Mysql) *gorm.DB {
 		sqlDB, _ := db.DB()
 		sqlDB.SetMaxIdleConns(m.MaxIdleConns)
 		sqlDB.SetMaxOpenConns(m.MaxOpenConns)
-		global.LOG.Info(fmt.Sprintf("mysql connect success: %s\n", m.Dsn()))
+		global.LOG.Info(fmt.Sprintf("mysql connect success: %s", m.Dsn()))
 		return db
 
 	}

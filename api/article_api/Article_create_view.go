@@ -41,8 +41,14 @@ func (a ArticleApi) ArticleCreateView(ctx *gin.Context) {
 	if cr.Cover == "" {
 		cr.Cover = "默认封面url"
 	}
+	// 默认分类
+	if cr.Category == "" {
+		cr.Category = "默认分类"
+	}
+
 	article := &models.Article{
 		//	创建文章
+		Category:    cr.Category,
 		Title:       cr.Title,
 		Content:     cr.Content,
 		Cover:       cr.Cover,
