@@ -99,6 +99,7 @@ func Routers() *gin.Engine {
 
 	// 注册用户路由
 	routers.UserRouter(ApiGroup)
+	routers.ArticleRouter(ApiGroup)
 
 	global.ROUTERS = Router.Routes()
 

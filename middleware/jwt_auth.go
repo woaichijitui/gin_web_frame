@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"gin_web_frame/global"
 	"gin_web_frame/model/ctype"
 	"gin_web_frame/model/res"
@@ -39,8 +40,9 @@ func JwtAuth() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-
+		fmt.Println("这是claims：", claims)
 		c.Set("claims", claims)
+		c.Next()
 
 	}
 }

@@ -3,12 +3,15 @@ module gin_web_frame
 go 1.23.0
 
 require (
+	github.com/casbin/casbin/v2 v2.105.0
+	github.com/casbin/gorm-adapter/v3 v3.32.0
 	github.com/fsnotify/fsnotify v1.8.0
 	github.com/gin-gonic/gin v1.10.0
 	github.com/glebarez/sqlite v1.11.0
 	github.com/go-playground/validator/v10 v10.24.0
 	github.com/go-sql-driver/mysql v1.9.2
 	github.com/golang-jwt/jwt/v5 v5.2.2
+	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/qiniu/qmgo v1.1.9
 	github.com/redis/go-redis/v9 v9.8.0
 	github.com/spf13/viper v1.20.1
@@ -22,7 +25,7 @@ require (
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/driver/sqlserver v1.5.4
-	gorm.io/gorm v1.26.0
+	gorm.io/gorm v1.26.1
 )
 
 require (
@@ -31,8 +34,6 @@ require (
 	github.com/bmatcuk/doublestar/v4 v4.6.1 // indirect
 	github.com/bytedance/sonic v1.12.7 // indirect
 	github.com/bytedance/sonic/loader v0.2.3 // indirect
-	github.com/casbin/casbin/v2 v2.105.0 // indirect
-	github.com/casbin/gorm-adapter/v3 v3.32.0 // indirect
 	github.com/casbin/govaluate v1.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
@@ -72,11 +73,9 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/ncruces/go-strftime v0.1.9 // indirect
-	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
-	github.com/rogpeppe/go-internal v1.12.0 // indirect
 	github.com/sagikazarmark/locafero v0.7.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.12.0 // indirect
@@ -94,14 +93,14 @@ require (
 	golang.org/x/arch v0.13.0 // indirect
 	golang.org/x/exp v0.0.0-20250106191152-7588d65b2ba8 // indirect
 	golang.org/x/net v0.34.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
+	golang.org/x/sync v0.14.0 // indirect
 	golang.org/x/sys v0.29.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/text v0.25.0 // indirect
 	golang.org/x/tools v0.29.0 // indirect
 	google.golang.org/protobuf v1.36.3 // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/plugin/dbresolver v1.5.3 // indirect
+	gorm.io/plugin/dbresolver v1.6.0 // indirect
 	modernc.org/libc v1.61.9 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.8.2 // indirect
