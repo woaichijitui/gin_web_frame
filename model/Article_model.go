@@ -7,7 +7,6 @@ import (
 type Article struct {
 	gorm.Model
 	Title       string `gorm:"size:256"`  // 标题
-	Category    string `gorm:"size:32"`   // 分类ID
 	Content     string `gorm:"type:text"` // 内容
 	Cover       string // 封面
 	Description string `gorm:"size:256"` // 描述
@@ -18,6 +17,8 @@ type Article struct {
 	CollectNum  int    // 收藏数
 	ViewNum     int    // 浏览数
 	ShareNum    int    // 分享数
-	Tags        []Tag  `gorm:"many2many:article_tag_relations"` // 标签
+	Tags        []Tag  `gorm:"many2many:article_tag_relations" json:"-"` // 关联标签
+
+	//Category    string `gorm:"size:32"`   // 分类ID
 
 }

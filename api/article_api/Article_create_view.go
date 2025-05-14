@@ -48,7 +48,6 @@ func (a ArticleApi) ArticleCreateView(ctx *gin.Context) {
 
 	article := &models.Article{
 		//	创建文章
-		Category:    cr.Category,
 		Title:       cr.Title,
 		Content:     cr.Content,
 		Cover:       cr.Cover,

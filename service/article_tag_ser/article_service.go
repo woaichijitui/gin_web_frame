@@ -186,6 +186,43 @@ func (a *ArticleTagService) ArticleUpdateWithTags(article *models.Article, mp *m
 	})
 }
 
+func (a *ArticleTagService) GetArticlesByTagId(tagID uint, page models.PageInfo) (
+	tag models.Tag,
+	articles []models.Article,
+	count int64,
+	err error,
+) {
+	db := global.DB
+
+	// 1. 获取标签基础信息
+	if err = db.First(&tag, tagID).Error; err != nil {
+		return models.Tag{}, nil, 0, err
+	}
+
+	// 2. 使用 JOIN 直接分页查询
+	query := db.
+		Joins("JOIN article_tag_relations ON article.id = article_tag_relations.article_id").
+		Where("article_tag_relations.tag_id = ?", tagID)
+
+	//3. 获取总数
+	if err = query.Model(&models.Article{}).Count(&count).Error; err != nil {
+		return tag, nil, 0, err
+	} else if count == 0 {
+		return tag, []models.Article{}, 0, nil
+	}
+
+	// 4. 分页查询
+	if err = query.
+		Order("article.created_at DESC").
+		Offset((page.Page - 1) * page.Limit).
+		Limit(page.Limit).
+		Find(&articles).Error; err != nil {
+		return tag, nil, 0, err
+	}
+
+	return tag, articles, count, nil
+}
+
 func (a *ArticleTagService) CreateTags(tag *models.Tag) error {
 	return global.DB.Create(tag).Error
 }

@@ -14,6 +14,7 @@ func TagRouter(router *gin.RouterGroup) {
 	router.POST("/tag/create", middleware.JwtAuth(), tagApi.TagCreateView)
 	router.PUT("/tag/update/:id", middleware.JwtAuth(), tagApi.TagUpdateView)
 	router.DELETE("/tag/delete/:id", middleware.JwtAuth(), tagApi.TagDeleteView)
+	router.GET("/tag/:id/articles", middleware.JwtAuth(), tagApi.ArticleListInTagView)
 	//router.POST("/login", userApi.EmailLoginView)
 	//router.POST("/user_register", userApi.UserRegisterView)
 	//router.GET("/users", middleware.JwtAuth(), userApi.UserListView)

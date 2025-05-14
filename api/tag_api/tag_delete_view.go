@@ -12,7 +12,7 @@ import (
 // @Tags 分类管理
 // @summary 删除分类
 // @Description 删除分类
-// @Param id path string  true "URL 参数 ：id"
+// @Param id path string  true "URL 参数: id"
 // @Router /tag/delete/{id} [delete]
 // @Produce json
 // @success 200 {object} res.Response
