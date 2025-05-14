@@ -28,7 +28,7 @@ func (ArticleApi) ArticleDeleteView(c *gin.Context) {
 		return
 	}
 
-	//	判断文件是否存在
+	//	判断文章是否存在
 	var articleList []models.Article
 	count := global.DB.Find(&articleList, cr.IDList).RowsAffected
 	if count == 0 {
