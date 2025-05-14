@@ -127,6 +127,31 @@ func (a *ArticleTagService) ArticleCreateWithTags(article *models.Article, tags 
 	})
 }
 
+// 这个性能最好
+func (a *ArticleTagService) ArticleUpdateWithTags(article *models.Article, mp *map[string]interface{}, tags []models.Tag) error {
+	return global.DB.Transaction(func(tx *gorm.DB) error {
+		// 1. 批量处理标签 (原子操作)
+		if len(tags) > 0 {
+			// 使用 Upsert 语法批量创建/跳过标签
+			if err := tx.Clauses(clause.OnConflict{
+				Columns:   []clause.Column{{Name: "tag_name"}},
+				DoNothing: true,
+			}).Create(&tags).Error; err != nil {
+				return err
+			}
+		}
+
+		// 2. 创建文章并直接关联标签 (单次操作)
+		// 2. 更新文章主体
+		if err := tx.Model(article).Updates(mp).Error; err != nil {
+			return err
+		}
+		// 3. 替换关联（GORM 仍然会操作中间表）
+		return tx.Model(article).Association("Tags").Replace(tags)
+
+	})
+}
+
 func (a *ArticleTagService) CreateTags(tag *models.Tag) error {
 	return global.DB.Create(tag).Error
 }

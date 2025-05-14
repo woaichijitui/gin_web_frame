@@ -12,7 +12,7 @@ type Article struct {
 	Cover       string // 封面
 	Description string `gorm:"size:256"` // 描述
 	AuthorId    uint   // 作者ID
-	Status      int8   // 状态 0:待审核 1:审核不通过 2:发布 3:用户删除
+	Status      int8   // 状态 0:待审核 1:审核不通过 2:发布 3:草稿 4:用户删除
 	CommentNum  int    // 评论数
 	LikeNum     int    // 点赞数
 	CollectNum  int    // 收藏数
