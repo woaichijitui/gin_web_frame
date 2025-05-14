@@ -130,18 +130,30 @@ func (a *ArticleTagService) ArticleCreateAndAppendTags1(article *models.Article,
 	})
 }
 
-// 这个性能最好
+// ArticleCreateWithTags 这个性能最好
 func (a *ArticleTagService) ArticleCreateWithTags(article *models.Article, tags []models.Tag) error {
 	return global.DB.Transaction(func(tx *gorm.DB) error {
-		// 1. 批量处理标签 (原子操作)
+
+		// 提取标签名用于后续查询
+		tagNames := make([]string, len(tags))
+		for i, tag := range tags {
+			tagNames[i] = tag.TagName
+		}
+
+		// 批量处理标签 (原子操作)
 		if len(tags) > 0 {
 			// 使用 Upsert 语法批量创建/跳过标签
 			if err := tx.Clauses(clause.OnConflict{
 				Columns:   []clause.Column{{Name: "tag_name"}},
 				DoNothing: true,
-			}).Create(&tags).Error; err != nil {
+			}).Create(tags).Error; err != nil {
 				return err
 			}
+		}
+
+		// 重新查询完整标签数据（获取 ID）
+		if err := tx.Where("tag_name IN ?", tagNames).Find(&tags).Error; err != nil {
+			return err
 		}
 
 		// 2. 创建文章并直接关联标签 (单次操作)

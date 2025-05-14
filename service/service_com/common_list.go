@@ -46,3 +46,17 @@ func ComList[T any](model T, option Option) (modelList []T, count int64, err err
 	err = query.Limit(option.Limit).Offset(offset).Order(option.Sort).Find(&modelList).Error
 	return modelList, count, err
 }
+
+// 分页通用 Scope
+func Paginate(pageInfo models.PageInfo) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		if pageInfo.Page <= 0 {
+			pageInfo.Page = 1
+		}
+		if pageInfo.Limit <= 0 {
+			pageInfo.Limit = 10 // 默认每页10条
+		}
+		offset := (pageInfo.Page - 1) * pageInfo.Limit
+		return db.Offset(offset).Limit(pageInfo.Limit)
+	}
+}

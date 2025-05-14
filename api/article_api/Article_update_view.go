@@ -37,10 +37,10 @@ func (ArticleApi) ArticleUpdateView(c *gin.Context) {
 	}
 
 	var article models.Article
-	//根据id查询是否有此广告
+	//根据id查询是否有这些文章
 	row := global.DB.Take(&article, "id = ?", id).RowsAffected
 	if row == 0 {
-		res.OkWithMassage("没有此广告", c)
+		res.OkWithMassage("文章不存在", c)
 		return
 	}
 

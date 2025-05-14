@@ -45,7 +45,7 @@ func OkWith(c *gin.Context) {
 }
 
 // OkWithList 响应分页操作
-func OkWithList[T any](list T, count int64, c *gin.Context) {
+func OkWithList[T any](list []T, count int64, c *gin.Context) {
 	OkWithData(gin.H{"list": list, "count": count}, c)
 }
 
