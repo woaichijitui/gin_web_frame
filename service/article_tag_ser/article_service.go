@@ -10,6 +10,28 @@ import (
 type ArticleTagService struct {
 }
 
+func (a *ArticleTagService) DeleteArticlesWithTag(articleIds []uint) error {
+	if len(articleIds) == 0 {
+		return nil
+	}
+
+	return global.DB.Transaction(func(tx *gorm.DB) error {
+		// 批量删除中间表关联
+		if err := tx.Exec(
+			"DELETE FROM article_tag_relations WHERE article_id IN (?)",
+			articleIds,
+		).Error; err != nil {
+			return err
+		}
+
+		// 批量删除文章（物理删除）
+		//return tx.Unscoped().Where("id IN (?)", articleIds).Delete(&models.Article{}).Error
+
+		// 如果使用软删除：
+		return tx.Where("id IN (?)", articleIds).Delete(&models.Article{}).Error
+	})
+}
+
 func (a *ArticleTagService) ArticleCreateAndAppendTags(article *models.Article, tags []models.Tag) error {
 	return global.DB.Transaction(func(tx *gorm.DB) error {
 		var tagsToAppend []models.Tag
