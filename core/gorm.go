@@ -35,7 +35,9 @@ func Gorm() *gorm.DB {
 func RegisterTables() {
 	db := global.DB
 	err := db.AutoMigrate(
-		models.UserModel{},
+		&models.UserModel{},
+		&models.Tag{},
+		&models.Article{},
 	)
 	if err != nil {
 		global.LOG.Error("register table failed", zap.Error(err))

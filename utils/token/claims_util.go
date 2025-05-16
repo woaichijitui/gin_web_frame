@@ -1,20 +1,37 @@
 package token
 
-import "github.com/gin-gonic/gin"
+import (
+	"errors"
+	"github.com/gin-gonic/gin"
+)
 
-func GetClaimsForCtx(ctx *gin.Context) *MyCustomClaims {
+func GetClaimsForCtx(ctx *gin.Context) (*MyCustomClaims, error) {
 	claims, exists := ctx.Get("claims")
 	if !exists || claims == nil {
-		return nil
+		return nil, errors.New("claims not found in context")
 	}
-	return claims.(*MyCustomClaims)
+	customClaims, ok := claims.(*MyCustomClaims)
+	if !ok {
+		return nil, errors.New("invalid claims type")
+	}
+	return customClaims, nil
 
 }
 
 func GetClaimsRole(ctx *gin.Context) (role int, err error) {
-	claims := GetClaimsForCtx(ctx)
-	if claims == nil {
+	claims, err := GetClaimsForCtx(ctx)
+	if err != nil {
 		return 0, err
 	}
 	return claims.Role, nil
+}
+
+func GetClaimsId(ctx *gin.Context) (int, error) {
+	claims, err := GetClaimsForCtx(ctx)
+	if err != nil {
+		return 0, err
+	}
+
+	return claims.UserID, nil
+
 }

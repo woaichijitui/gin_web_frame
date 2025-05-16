@@ -8,15 +8,15 @@ import (
 
 func UserRouter(router *gin.RouterGroup) {
 
-	loginApi := api.ApiGroupApp.LoginApi
+	userApi := api.ApiGroupApp.UserApi
 
-	router.POST("/login", loginApi.EmailLoginView)
-	router.POST("/user_register", loginApi.UserRegisterView)
-	router.GET("/user_logout", middleware.JwtAuth(), loginApi.UserLogoutView)
-	//router.GET("/users", middleware.JwtAuth(), loginApi.UserListView)
-	//router.PUT("/user_update_role", middleware.JwtAuth(), loginApi.UserUpdateRoleView)
-	//router.PUT("/user_update_pwd", middleware.JwtAuth(), loginApi.UserUpdatePwdView)
-	//router.DELETE("/user_delete", middleware.JwtAuth(), loginApi.UserRemoveView)
-	//router.POST("/user_bind_email", middleware.JwtAuth(), loginApi.UserBindMailView)
+	router.POST("/login", userApi.EmailLoginView)
+	router.POST("/user_register", userApi.UserRegisterView)
+	router.GET("/user_logout", middleware.JwtAuth(), userApi.UserLogoutView)
+	//router.GET("/users", middleware.JwtAuth(), userApi.UserListView)
+	//router.PUT("/user_update_role", middleware.JwtAuth(), userApi.UserUpdateRoleView)
+	//router.PUT("/user_update_pwd", middleware.JwtAuth(), userApi.UserUpdatePwdView)
+	//router.DELETE("/user_delete", middleware.JwtAuth(), userApi.UserRemoveView)
+	//router.POST("/user_bind_email", middleware.JwtAuth(), userApi.UserBindMailView)
 
 }

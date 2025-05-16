@@ -35,12 +35,13 @@ func JwtAuth() gin.HandlerFunc {
 		claims, err := utils.ParseTokenRs256(token)
 		if err != nil {
 			global.LOG.Error(err.Error())
-			res.FailWithMassage("token解析失败", c)
+			res.FailWithMassage("token失效", c)
 			c.Abort()
 			return
 		}
 
 		c.Set("claims", claims)
+		c.Next()
 
 	}
 }
