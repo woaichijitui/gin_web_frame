@@ -203,7 +203,7 @@ qiniu:
 redis:
     name: "cache"
     addr: 47.121.183.173:36379
-    password: "123456"
+    password: "G62m50oigInC30sf"
     db: 0
     useCluster: false
     clusterAddrs:
@@ -213,7 +213,7 @@ redis:
 redis-list:
     - name: cache
       addr: 47.121.183.173:36379
-      password: "123456"
+      password: "G62m50oigInC30sf"
       db: 0
       useCluster: false
       clusterAddrs:

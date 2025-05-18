@@ -41,7 +41,13 @@ func (TagApi) ArticleListInTagView(c *gin.Context) {
 
 	//	查询
 	tag, articles, count, err := service.Service.ArticleService.GetArticlesByTagId(uint(tagId), page)
+	
 	if err != nil {
+		//
+		if tag.ID == -1 {
+			res.FailWithMassage("没有该标签", c)
+			return
+		}
 		zap.L().Error("查询错误", zap.Error(err))
 		res.FailWithCode(res.DBError, c)
 		return
