@@ -1,7 +1,6 @@
 package article_tag_ser
 
 import (
-	"errors"
 	"gin_web_frame/global"
 	models "gin_web_frame/model"
 	"gorm.io/gorm"
@@ -118,7 +117,7 @@ func (a *ArticleTagService) ArticleUpdateWithTags(article *models.Article, mp *m
 }
 
 func (a *ArticleTagService) GetArticlesByTagId(tagID uint, page models.PageInfo) (
-	tag models.Tag,
+	tag *models.Tag,
 	articles []models.Article,
 	count int64,
 	err error,
@@ -126,15 +125,10 @@ func (a *ArticleTagService) GetArticlesByTagId(tagID uint, page models.PageInfo)
 	db := global.DB
 
 	// 1. 获取标签基础信息
-	if err = db.First(&tag, tagID).Error; err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			// 确定是「记录未找到」
-			return models.Tag{
-				Model: gorm.Model{ID: -1}, // 表示没有查询到
-			}, nil, 0, nil
-		}
+	if err = db.First(tag, tagID).Error; err != nil {
+
 		// 其他数据库错误（连接失败、语法错误等）
-		return models.Tag{}, nil, 0, err
+		return nil, nil, 0, err
 	}
 
 	// 2. 使用 JOIN 直接分页查询

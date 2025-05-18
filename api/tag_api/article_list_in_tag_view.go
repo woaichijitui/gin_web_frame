@@ -1,9 +1,11 @@
 package tag_api
 
 import (
+	"errors"
 	models "gin_web_frame/model"
 	"gin_web_frame/model/res"
 	"gin_web_frame/service"
+	"gorm.io/gorm"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -41,13 +43,15 @@ func (TagApi) ArticleListInTagView(c *gin.Context) {
 
 	//	查询
 	tag, articles, count, err := service.Service.ArticleService.GetArticlesByTagId(uint(tagId), page)
-	
 	if err != nil {
-		//
-		if tag.ID == -1 {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			// 确定是「记录未找到」
+			// 无法区分id = 0 和未找到
+			// nil 表示没有查询到
 			res.FailWithMassage("没有该标签", c)
 			return
 		}
+
 		zap.L().Error("查询错误", zap.Error(err))
 		res.FailWithCode(res.DBError, c)
 		return

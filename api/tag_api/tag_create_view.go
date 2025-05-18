@@ -6,7 +6,8 @@ import (
 	"gin_web_frame/model/req"
 	"gin_web_frame/model/res"
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
+	"github.com/go-sql-driver/mysql"
+	"go.uber.org/zap"
 )
 
 // TagCreateView 创建分类
@@ -40,9 +41,14 @@ func (a TagApi) TagCreateView(ctx *gin.Context) {
 	}
 	err = global.DB.Create(&tagModel).Error
 	if err != nil {
-		if err == gorm.ErrDuplicatedKey {
-
+		// 判断是否为唯一约束冲突（错误码 1062）
+		if mysqlErr, ok := err.(*mysql.MySQLError); ok && mysqlErr.Number == 1062 {
+			res.FailWithMassage("标签重复", ctx)
+			return
 		}
+		zap.L().Error("分类插入错误: ", zap.Error(err))
+		res.FailWithCode(res.DBError, ctx)
+		return
 	}
 
 	res.OkWithData("创建成功", ctx)
